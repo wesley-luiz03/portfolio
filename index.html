@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wesley Luiz | Analista de dados e banco de dados</title>
+<meta name="description" content="Portfólio de Wesley Luiz: relatórios em Oracle SQL, dashboards e sistemas web.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wesley Luiz | Analista de dados e banco de dados">
+<meta property="og:description" content="Relatórios em Oracle SQL, dashboards no Grafana e sistemas web. Veja meus projetos.">
+<meta property="og:image" content="https://SEU-DOMINIO/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://SEU-DOMINIO/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💚</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="top">
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="brand" href="#inicio" data-i="brand">Portfólio</a>
+  <div class="tools">
+    <div class="lang" id="lang" role="group" aria-label="Idioma / Language / Idioma">
+      <button type="button" data-l="pt" aria-pressed="true">PT</button><button type="button" data-l="en" aria-pressed="false">EN</button><button type="button" data-l="es" aria-pressed="false">ES</button>
+    </div>
+    <label class="switch"><input type="checkbox" id="theme" checked role="switch" aria-label="Tema claro / escuro"><span></span></label>
+  </div>
+<div class="prog" id="prog"></div>
+</header>
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Menu">
+  <a href="#sobre" data-i="m_sobre">Sobre</a><a href="#habilidades" data-i="m_hab">Habilidades</a><a href="#dados" data-i="m_dados">Dados</a><a href="#projetos" data-i="m_proj">Projetos</a><a href="#trajetoria" data-i="m_traj">Trajetória</a><a href="#contatos" data-i="m_cont">Contatos</a>
+</aside>
+
+<main>
+<section id="inicio" class="hero">
+  <div>
+    <h1 data-i="h1">Olá, eu sou o<br><em>Wesley Luiz :)</em></h1>
+    <p class="role" data-i="role">Analista de Dados | Oracle SQL | Winthor | Grafana</p>
+    <div class="row">
+      <a class="btn" id="cv" href="assets/cv/curriculo-wesley.pdf" download data-i="cv">Download CV</a>
+      <a class="btn out" href="mailto:wesleydev03@gmail.com" data-i="ctc">Entrar em contato</a>
+    </div>
+  </div>
+  <div class="avatar-wrap" id="av"><div class="avatar"><span aria-hidden="true">WL</span><img src="assets/avatar.jpg" alt="Foto de Wesley Luiz" onerror="this.remove()"></div></div>
+</section>
+
+<section id="sobre" class="narrow">
+  <h2 data-i="t_sobre">Sobre mim</h2>
+  <p class="about" data-i="about">Analista de dados e banco de dados em formação, especializado em transformar o ERP de uma empresa em relatórios e dashboards que a equipe usa no dia a dia. Trabalho na Comal, em Recife, escrevendo relatórios em Oracle SQL sobre o Winthor da TOTVS e acompanhando dashboards no Grafana. Estudo Análise e Desenvolvimento de Sistemas na UNIFAFIRE e lidero a equipe de comunicação da 2ª Igreja Batista de Areias, onde também desenvolvo sistemas web com Next.js e Supabase.</p>
+</section>
+
+<section id="habilidades" class="wide">
+  <h2 class="mid" data-i="t_hab">Habilidades</h2>
+  <div class="skills" id="skills"></div>
+</section>
+
+<section id="dados" class="wide">
+  <h2 class="mid" data-i="t_dados">Dados na prática</h2>
+  <p class="sub" data-i="s_dados">Teste uma Curva ABC de clientes, um dos relatórios que escrevo em SQL, e explore os outros seis.</p>
+  <div class="card demo">
+    <div class="ctl"><label for="cut" data-i="l_cut">Classe A vai até</label><input id="cut" type="range" min="60" max="90" step="5" value="80"><output id="cutv">80%</output></div>
+    <div class="bars" id="bars" role="group" aria-label="ABC"></div>
+    <p class="outp" id="out" aria-live="polite"></p>
+    <div class="leg"><span><i style="background:var(--pu)"></i><b data-i="lg_a">Classe A</b></span><span><i style="background:var(--b)"></i><b data-i="lg_b">Classe B (até 95%)</b></span><span><i style="background:var(--c)"></i><b data-i="lg_c">Classe C</b></span></div>
+    <p id="sum"></p>
+    <details><summary data-i="sql">Ver a lógica em SQL</summary>
+<pre>CASE
+  WHEN SUM(total_venda) OVER (
+         ORDER BY total_venda DESC
+         ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+       / NULLIF(faturamento_geral, 0) * 100 &lt;= 80 THEN 'A'
+  WHEN (mesmo acumulado) &lt;= 95 THEN 'B'
+  ELSE 'C'
+END AS classe</pre></details>
+    <p class="note" data-i="note">Dados fictícios. Nenhuma informação real da empresa aparece neste site.</p>
+  </div>
+  <div class="split">
+    <div class="list" id="rl"></div>
+    <div class="card" id="rp" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="projetos" class="wide">
+  <h2 class="mid" data-i="t_proj">Projetos</h2>
+  <h3 class="tt" data-i="t_dest">Destaques</h3>
+  <div class="pgrid" id="pg"></div>
+  <h3 class="tt" data-i="t_acad">Projetos acadêmicos</h3>
+  <div class="pgrid" id="ag"></div>
+</section>
+
+<section id="trajetoria" class="wide">
+  <h2 class="mid" data-i="t_traj">Trajetória</h2>
+  <div class="two">
+    <ol class="tl">
+      <li><time data-i="tl1d">Abr/2026 até hoje</time><h3 data-i="tl1t">Assistente de TI e analista de dados, Comal Comércio</h3><p data-i="tl1p">Relatórios em SQL no Winthor, dashboards no Grafana, Excel e Power BI, além de suporte, redes e manutenção.</p></li>
+      <li><time data-i="tl2d">Set/2025 a Dez/2025</time><h3 data-i="tl2t">Estagiário em gestão de projetos, PontoSimples</h3><p data-i="tl2p">Kanban, dailies de Scrum e versionamento de novas versões do software.</p></li>
+      <li><time data-i="tl3d">Jan/2024 a Dez/2024</time><h3 data-i="tl3t">Estagiário em TI, Solivetti Soluções</h3><p data-i="tl3p">Manutenção de impressoras, instalações em clientes e suporte de rede.</p></li>
+      <li><time data-i="tl4d">Jan/2023 a Dez/2023</time><h3 data-i="tl4t">Estagiário em TI, Cli-k Telecomunicações</h3><p data-i="tl4p">Suporte a funcionários e clientes, hardware, redes e sistemas Windows e Linux.</p></li>
+    </ol>
+    <div>
+      <h3 data-i="t_form">Formação</h3>
+      <p class="plain" data-i="form"><strong>Análise e Desenvolvimento de Sistemas, UNIFAFIRE.</strong> Fev/2025 a Jul/2027. Representante de turma em todos os períodos e monitor de Gestão de Projetos, Redes, Metodologias Ágeis e Banco de Dados I.</p>
+      <h3 class="gap" data-i="t_cert">Certificações</h3>
+      <ul class="plain">
+        <li data-i="c1">Com.Domínio Digital 4.0, Instituto Aliança e UECE, 335 h (2025). Lógica, Python, Java e SQL</li>
+        <li data-i="c2">Fast Cibersegurança, CESAR School, 60 h (Out/2025)</li>
+        <li data-i="c3">Kickoff Predictive, PMI-PE, processos ágeis (Jun/2025)</li>
+        <li data-i="c4">Recife Front End Community, FIAP, Angular (Abr/2025)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contatos" class="wide">
+  <h2 class="mid" data-i="t_cont">Contatos</h2>
+  <p class="sub mid" data-i="s_cont">Busco uma posição como analista de dados ou de banco de dados.</p>
+  <div class="contacts">
+  <a class="so" href="mailto:wesleydev03@gmail.com" aria-label="E-mail" title="E-mail"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
+  <a class="so" href="https://www.linkedin.com/in/wesley-luiz-7a791b24b" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+  <a class="so" href="https://github.com/wesley-luiz03" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+  </div>
+</section>
+</main>
+<footer>Wesley Luiz, Recife, Pernambuco.</footer>
+<div class="dot" id="dot" aria-hidden="true"></div>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
